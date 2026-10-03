@@ -1,9 +1,9 @@
-int EN12 = 8;
-int IN1 = 9;
-int IN2 = 10;
-int EN34 = 2;
-int IN3 = 3;
-int IN4 = 4;
+int EN12 = 9;
+int IN1 = 10;
+int IN2 = 11;
+int EN34 = 3;
+int IN3 = 4;
+int IN4 = 5;
 
 int photo = A0;
 int sw = 13;
@@ -28,21 +28,24 @@ void loop()
   int val2= map(val,0,1023,0,255);
   int value = digitalRead(sw);
   
-  if(value == 1)
+  if(value == HIGH)
   {
-    digitalWrite(EN12,HIGH);
-  	analogWrite(IN1,val2);
-    analogWrite(IN2,0);
+    analogWrite(EN12,val2);
+  	digitalWrite(IN1,HIGH);
+    digitalWrite(IN2,LOW);
     
-    analogWrite(IN1,0);
-    analogWrite(IN2,0);
+    analogWrite(EN34,0);
+    digitalWrite(IN3,LOW);
+    digitalWrite(IN4,LOW);
   }
   else
   {
-    analogWrite(IN1,val2);
-    analogWrite(IN2,0);
+    analogWrite(EN12,val2);
+  	digitalWrite(IN1,HIGH);
+    digitalWrite(IN2,LOW);
     
-    analogWrite(IN1,val2);
-    analogWrite(IN2,0);
+    analogWrite(EN34,val2);
+    digitalWrite(IN3,HIGH);
+    digitalWrite(IN4,LOW);
   }
 }
